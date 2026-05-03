@@ -165,6 +165,11 @@
 
         let currentLevel = 0;
 
+        function startQuiz() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('game-container').style.display = 'block';
+        }
+
         function checkAnswer() {
             const input = document.getElementById('password-input').value.toLowerCase().trim();
             const error = document.getElementById('error-msg');
