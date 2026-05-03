@@ -7,7 +7,6 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Using the provided bear illustration as the overall background */
             background-image: url('mocha.jpeg');
             background-size: cover;
             background-repeat: no-repeat;
@@ -19,8 +18,7 @@
             margin: 0;
             color: #2c3e50;
         }
-        #game-container, #sorry-page {
-            /* White background with high transparency to see the bear illustration through it */
+        #game-container, #sorry-page, #landing-page {
             background: rgba(255, 255, 255, 0.85); 
             padding: 2.5rem;
             border-radius: 20px;
@@ -28,21 +26,31 @@
             text-align: center;
             max-width: 500px;
             width: 90%;
-            border-top: 10px solid #a4e7cc; /* Lighter Sea Green */
-        }
-        #sorry-page { display: none; }
-        
-        /* Styling for the ASCII Art Container */
-        #tiresult {
-            display: inline-block;
-            text-align: left;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            overflow-x: auto;
-            max-width: 100%;
-            line-height: 1.2;
+            border-top: 10px solid #a4e7cc;
         }
 
+        /* Message Box Styling */
+        .message-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        .message-box {
+            background: #e8f7f1;
+            padding: 12px 18px;
+            border-radius: 15px;
+            border-bottom-left-radius: 2px;
+            align-self: flex-start;
+            font-size: 1rem;
+            color: #4a4a4a;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+            max-width: 80%;
+            text-align: left;
+        }
+
+        #game-container, #sorry-page { display: none; }
+        
         input {
             padding: 12px;
             width: 85%;
@@ -79,6 +87,15 @@
 </head>
 <body>
 
+    <!-- New Landing Page -->
+    <div id="landing-page">
+        <div class="message-container">
+            <div class="message-box">Beshi ceye felsilam?</div>
+            <div class="message-box">আর তোমাকে আগের মতো ও পাই না</div>
+        </div>
+        <button onclick="startQuiz()">The End</button>
+    </div>
+
     <div id="game-container">
         <h2 id="level-title" class="viva-title">Vault🔒 1/10</h2>
         <span id="topic-label" class="sub-hint">Topic: Third Week of Development</span>
@@ -91,7 +108,7 @@
 
     <div id="sorry-page">
         <h1>YAYY!!!🐬</h1>
-        <h2 id="level-title" class="viva-title">VGSFHJ</h2>
+        <h2 class="viva-title">VGSFHJ</h2>
 
         
         <!-- Modified Image Section with your HTML ASCII Art -->
