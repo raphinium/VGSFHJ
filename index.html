@@ -7,7 +7,11 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #eef7f4;
+            /* Using the provided bear illustration as the overall background */
+            background-image: url('image_0.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,17 +20,19 @@
             color: #2c3e50;
         }
         #game-container, #sorry-page {
-            background: white;
+            /* White background with high transparency to see the bear illustration through it */
+            background: rgba(255, 255, 255, 0.85); 
             padding: 2.5rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(46, 139, 87, 0.1);
+            box-shadow: 0 10px 30px rgba(100, 200, 150, 0.1); /* Very light shadow */
             text-align: center;
             max-width: 500px;
             width: 90%;
-            border-top: 10px solid #2e8b57;
+            /* Border and accents in a much lighter, softer sea green */
+            border-top: 10px solid #a4e7cc; /* Lighter Sea Green */
         }
         #sorry-page { display: none; }
-        img {
+        img.inner-photo {
             max-width: 100%;
             height: auto;
             border-radius: 12px;
@@ -41,30 +47,40 @@
             margin-bottom: 15px;
             outline: none;
             font-size: 1rem;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent input */
         }
-        input:focus { border-color: #2e8b57; }
+        /* Input focus also in a lighter sea green */
+        input:focus { border-color: #a4e7cc; }
         button {
             padding: 12px 25px;
-            background-color: #2e8b57;
+            /* Lighter Sea Green button */
+            background-color: #a4e7cc; 
             border: none;
             border-radius: 8px;
-            color: white;
+            color: #4a4a4a; /* Darker text for contrast on a lighter background */
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
         }
-        button:hover { background-color: #1e5e3a; transform: scale(1.02); }
+        button:hover { 
+            background-color: #88d4b3; /* Slightly darker lighter sea green on hover */
+            transform: scale(1.02); 
+        }
+        /* Viva Level title in the new lighter sea green */
+        h2.viva-title {
+            color: #a4e7cc;
+            margin-top: 0;
+        }
         .hint { font-size: 1rem; color: #556b2f; margin-bottom: 20px; line-height: 1.5; font-weight: 500; }
         .sub-hint { font-size: 0.8rem; color: #7f8c8d; margin-bottom: 10px; display: block; }
-        h2 { color: #2e8b57; margin-top: 0; }
-        #error-msg { color: #c0392b; font-size: 0.9rem; margin-top: 15px; font-weight: bold; line-height: 1.4; }
+        #error-msg { color: #c0392b; font-size: 0.9rem; margin-top: 15px; font-weight: bold; white-space: pre-line; }
     </style>
 </head>
 <body>
 
     <div id="game-container">
-        <h2 id="level-title">Prof Viva: Level 1/10</h2>
-        <span id="topic-label" class="sub-hint">Topic: General Embryology</span>
+        <h2 id="level-title" class="viva-title">Prof Viva: Level 1/10</h2>
+        <span id="topic-label" class="sub-hint">Topic: Third Week of Development</span>
         <p id="hint-text" class="hint">The process characterized by the formation of the Primitive Streak and three germ layers.</p>
         <input type="text" id="password-input" placeholder="Type answer here..." autocomplete="off">
         <br>
@@ -74,7 +90,7 @@
 
     <div id="sorry-page">
         <h2>MBBS Prof: PASSED</h2>
-        <img src="your-image-here.jpg" alt="A message for you">
+        <img src="your-image-here.jpg" alt="A message for you" class="inner-photo">
         <p style="line-height: 1.6;">
             You aced the most important topics, just like you always do. I'm sorry for the fight and for being a distraction. I'm so proud of how hard you're working for your exams.
         </p>
@@ -83,18 +99,17 @@
     </div>
 
     <script>
-        // High-yield questions based on Langman's Medical Embryology (14th Ed)
         const challenges = [
-            { topic: "General Embryology", hint: "The 'Master Gene' responsible for establishing left-right sidedness (asymmetry).", ans: "pitx2", page: "71" },
-            { topic: "First Week", hint: "The 16-cell stage formed approximately 3 days after fertilization.", ans: "morula", page: "39" },
-            { topic: "Third Week", hint: "Remnant of the Notochord found in the adult intervertebral disc.", ans: "nucleus pulposus", page: "63" },
-            { topic: "Body Cavities", hint: "Clinical: Failure of the pleuroperitoneal membrane to close leads to Congenital ________ Hernia.", ans: "diaphragmatic", page: "174" },
-            { topic: "Fetal Membranes", hint: "The structure that produces hCG to prevent the degeneration of the corpus luteum.", ans: "syncytiotrophoblast", page: "51" },
-            { topic: "General Embryology", hint: "A tumor formed from pluripotent cells, often containing hair, teeth, or bone.", ans: "teratoma", page: "17" },
-            { topic: "Head and Neck", hint: "The embryological origin of the Parafollicular (C) cells of the Thyroid gland.", ans: "ultimobranchial body", page: "288" },
-            { topic: "Central Nervous System", hint: "Clinical: The condition resulting from the failure of the Cranial Neuropore to close.", ans: "anencephaly", page: "75" },
-            { topic: "Third Week", hint: "The specific portion of the mesoderm that forms the somites.", ans: "paraxial", page: "76" },
-            { topic: "Head and Neck", hint: "The common embryological origin of all connective tissue in the head and face.", ans: "neural crest", page: "281" }
+            { topic: "Third Week of Development", hint: "The process characterized by the formation of the Primitive Streak and three germ layers.", ans: "gastrulation", chapter: "Chapter 5" },
+            { topic: "First Week of Development", hint: "The 16-cell stage formed approximately 3 days after fertilization.", ans: "morula", chapter: "Chapter 3" },
+            { topic: "Molecular Regulation", hint: "The 'Master Gene' responsible for establishing left-right sidedness (asymmetry).", ans: "pitx2", chapter: "Chapter 5" },
+            { topic: "Third Week / Notochord", hint: "Remnant of the Notochord found in the adult intervertebral disc.", ans: "nucleus pulposus", chapter: "Chapter 5" },
+            { topic: "Body Cavities", hint: "Clinical: Failure of the pleuroperitoneal membrane to close leads to Congenital ________ Hernia.", ans: "diaphragmatic", chapter: "Chapter 10" },
+            { topic: "Second Week / Implantation", hint: "The structure that produces hCG to prevent the degeneration of the corpus luteum.", ans: "syncytiotrophoblast", chapter: "Chapter 4" },
+            { topic: "Gametogenesis", hint: "A tumor formed from pluripotent cells, often containing hair, teeth, or bone.", ans: "teratoma", chapter: "Chapter 2" },
+            { topic: "Head and Neck", hint: "The embryological origin of the Parafollicular (C) cells of the Thyroid gland.", ans: "ultimobranchial body", chapter: "Chapter 19" },
+            { topic: "Central Nervous System", hint: "Clinical: The condition resulting from the failure of the Cranial Neuropore to close.", ans: "anencephaly", chapter: "Chapter 21" },
+            { topic: "Third Week / Mesoderm", hint: "The specific portion of the mesoderm that forms the somites.", ans: "paraxial", chapter: "Chapter 5" }
         ];
 
         let currentLevel = 0;
@@ -117,7 +132,8 @@
                     document.getElementById('sorry-page').style.display = 'block';
                 }
             } else {
-                error.innerText = `Incorrect. The Examiner is disappointed! \nCheck Langman's 14th Ed, Page ${challenges[currentLevel].page}.`;
+                // Modified error message to only show the chapter number
+                error.innerText = `Incorrect. The Examiner is disappointed! \nCheck Langman's 14th Ed, ${challenges[currentLevel].chapter}.`;
                 error.style.display = 'block';
             }
         }
